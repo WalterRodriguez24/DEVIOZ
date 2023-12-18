@@ -136,52 +136,52 @@ export const Content = () => {
         <div className="grid w-full grid-cols-1 gap-4 px-16 mt-4 lg:gap-16 md:gap-12 cus:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
           <div className="flex items-center gap-x-4">
             <BsCheckCircleFill className="text-[#2ed3ae] text-5xl min-w-[4rem]" />
-            <span className="text-xl md:text-3xl lg:text-2xl">
+            <span className="text-xl md:text-2xl lg:text-2xl">
               HTML5 + JS + CSS + SCSS
             </span>
           </div>
 
           <div className="flex items-center gap-x-4">
             <BsCheckCircleFill className="text-[#2ed3ae] text-5xl min-w-[4rem]" />
-            <span className="text-xl md:text-2xl lg:text-3xl">
+            <span className="text-xl md:text-2xl lg:text-2xl">
               Bootstrap 4+
             </span>
           </div>
 
           <div className="flex items-center gap-x-4">
             <BsCheckCircleFill className="text-[#2ed3ae] text-5xl min-w-[4rem]" />
-            <span className="text-xl md:text-2xl lg:text-3xl">Blog Pages</span>
+            <span className="text-xl md:text-2xl lg:text-2xl">Blog Pages</span>
           </div>
 
           <div className="flex items-center gap-x-4">
             <BsCheckCircleFill className="text-[#2ed3ae] text-5xl min-w-[4rem]" />
-            <span className="text-xl md:text-2xl lg:text-3xl">Shop Pages</span>
+            <span className="text-xl md:text-2xl lg:text-2xl">Shop Pages</span>
           </div>
 
           <div className="flex items-center gap-x-4">
             <BsCheckCircleFill className="text-[#2ed3ae] text-5xl min-w-[4rem]" />
-            <span className="text-xl md:text-2xl lg:text-3xl">
+            <span className="text-xl md:text-2xl lg:text-2xl">
               SEO Optimized
             </span>
           </div>
 
           <div className="flex items-center gap-x-4">
             <BsCheckCircleFill className="text-[#2ed3ae] text-5xl min-w-[4rem]" />
-            <span className="text-xl md:text-2xl lg:text-3xl">
+            <span className="text-xl md:text-2xl lg:text-2xl">
               Google Fonts Support
             </span>
           </div>
 
           <div className="flex items-center gap-x-4">
             <BsCheckCircleFill className="text-[#2ed3ae] text-5xl min-w-[4rem]" />
-            <span className="text-xl md:text-2xl lg:text-3xl">
+            <span className="text-xl md:text-2xl lg:text-2xl">
               Amazing Plugins
             </span>
           </div>
 
           <div className="flex items-center gap-x-4">
             <BsCheckCircleFill className="text-[#2ed3ae] text-5xl min-w-[4rem]" />
-            <span className="text-xl md:text-2xl lg:text-3xl">
+            <span className="text-xl md:text-2xl lg:text-2xl">
               Premium Resources
             </span>
           </div>
@@ -192,7 +192,7 @@ export const Content = () => {
         <div className="mt-4 bg-[#2ed3ae] px-16 grid gap-y-10 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-12 py-12">
           <div className="flex flex-col gap-y-4">
             <h2 className="text-3xl font-bold text-center text-white lg:text-left">
-              Devios
+              Devioz
             </h2>
             <p className="text-xl text-center text-white lg:text-left">
               Somos la empresa experta en la administración de personal y

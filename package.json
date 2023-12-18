@@ -1,11 +1,14 @@
 {
-  "name": "deviozz",
+  "name": "devioz",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "🚀 La puerta de entrada a la innovación en Devioz. Descubre una experiencia digital revolucionaria diseñada para conectar con los servicios vanguardistas y recursos esenciales de Devioz. ¡Bienvenido al futuro en línea de Devioz!",
   "type": "module",
+  "author": "devioz",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --base ./",
+    "build": "tsc && vite build --base=/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -13,6 +16,7 @@
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.2",
     "jotai": "^2.6.0",
+    "ldrs": "^1.0.1",
     "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

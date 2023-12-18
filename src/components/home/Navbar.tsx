@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { BsList } from "react-icons/bs";
+import { Navbar as NavbarI } from "../../interfaces/data";
 
-export const Navbar = () => {
+interface NavbarDataI {
+  data: NavbarI;
+}
+
+export const Navbar = ({ data }: NavbarDataI) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const [navbarBackground, setNavbarBackground] = useState("transparent");
 
@@ -27,18 +32,20 @@ export const Navbar = () => {
     };
   }, []);
 
+  if (!data) return null;
+
   return (
     <nav
       className={`md:bg-${navbarBackground} bg-[#333333] fixed top-0 z-20 w-full transition-all duration-300`}
     >
-      <div className="flex flex-wrap items-center justify-between max-w-screen-2xl p-4 mx-auto">
+      <div className="flex flex-wrap items-center justify-between p-4 mx-auto max-w-screen-2xl">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img
-            src="/images/Logo.png"
-            alt="Flowbite Logo"
+            src={data.logo}
+            alt="Devioz Logo"
             style={{
-              width: "140px",
-              height: "63px",
+              width: "180px",
+              height: "100px",
             }}
           />
         </a>
@@ -59,42 +66,17 @@ export const Navbar = () => {
           id="navbar-solid-bg"
         >
           <ul className="flex flex-col w-full mt-4 font-medium text-center rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-            <li>
-              <a
-                href="#"
-                className="transition-all duration-300 block py-2 px-3 md:p-0 text-white rounded md:bg-transparent md:hover:text-[#2ed1ad] bg-[#2ed3ae] hover:text-white"
-                aria-current="page"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="transition-all duration-300 block py-2 px-3 md:p-0 text-white rounded md:bg-transparent md:hover:text-[#2ed1ad] hover:text-white"
-                aria-current="page"
-              >
-                Services
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="transition-all duration-300 block py-2 px-3 md:p-0 text-white rounded md:bg-transparent md:hover:text-[#2ed1ad] hover:text-white"
-                aria-current="page"
-              >
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="transition-all duration-300 block py-2 px-3 md:p-0 text-white rounded md:bg-transparent md:hover:text-[#2ed1ad] hover:text-white"
-                aria-current="page"
-              >
-                Contact
-              </a>
-            </li>
+            {data.links.map((link, index) => (
+              <li key={index}>
+                <a
+                  href={link.link}
+                  className="transition-all text-xl duration-300 block py-2 px-3 md:p-0 text-white rounded md:bg-transparent md:hover:text-[#2ed1ad] bg-[#2ed3ae] hover:text-white"
+                  aria-current="page"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

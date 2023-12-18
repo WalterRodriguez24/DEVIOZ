@@ -1,25 +1,73 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaLaptop } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
-import { BsChevronLeft, BsPencilSquare, BsAward } from "react-icons/bs";
+import {
+  BsChevronLeft,
+  BsPencilSquare,
+  BsAward,
+  BsFacebook,
+  BsWhatsapp,
+  BsInstagram,
+} from "react-icons/bs";
+import { MdContactSupport } from "react-icons/md";
 import { GrUserExpert } from "react-icons/gr";
 import { CiBookmarkCheck } from "react-icons/ci";
+import { ring } from "ldrs";
+
+ring.register();
+
 import { Banner, Content, Drawer, Navbar, Pages, Variety } from "../components";
-import { arrayImages } from "../helpers";
+import { arrayImagesServices } from "../helpers";
+import { arrayServices } from "../helpers/arrayServices";
+import useDevioz from "../hooks/useDevioz";
+import { DataI } from "../interfaces/data";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [optionDrawerSelected, setOptionDrawerSelected] = useState(1);
+  const [showAllSocials, setShowAllSocials] = useState(false);
+  const [dataPage, setDataPage] = useState<DataI>();
+  const { handleGetData } = useDevioz();
 
   const onClickOptionDrawer = (option: number) => {
     setOptionDrawerSelected(option);
   };
 
+  const onGetDataAll = async () => {
+    try {
+      const response = await handleGetData();
+      if (response.ok) {
+        setDataPage(response.data!);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    onGetDataAll();
+  }, []);
+
+  if (!dataPage) {
+    return (
+      <div className="flex items-center justify-center w-screen h-screen bg-[#2ed3ae] flex-col gap-y-10">
+        <img src="/images/Logo.png" alt="Logo" className="w-64 h-32" />
+        <l-ring
+          size="50"
+          stroke="5"
+          bg-opacity="0"
+          speed="2"
+          color="white"
+        ></l-ring>
+      </div>
+    );
+  }
+
   return (
     <>
       <div>
-        <Navbar />
-        <Banner />
+        <Navbar data={dataPage.navbar} />
+        <Banner data={dataPage.heros} />
       </div>
 
       <section className="mt-20">
@@ -109,55 +157,36 @@ export default function Home() {
             Button
           </button>
 
-          <div className="flex gap-12 border-b border-[#ececee] w-full items-center justify-center">
-            <button
-              onClick={() => onClickOptionDrawer(1)}
-              className={`${
-                optionDrawerSelected === 1 && "text-[#2ed3ae]"
-              } transition-all duration-300`}
-            >
-              All
-            </button>
-            <button
-              onClick={() => onClickOptionDrawer(2)}
-              className={`${
-                optionDrawerSelected === 2 && "text-[#2ed3ae]"
-              } transition-all duration-300`}
-            >
-              All 2
-            </button>
-            <button
-              onClick={() => onClickOptionDrawer(3)}
-              className={`${
-                optionDrawerSelected === 3 && "text-[#2ed3ae]"
-              } transition-all duration-300`}
-            >
-              All 3
-            </button>
-            <button
-              onClick={() => onClickOptionDrawer(4)}
-              className={`${
-                optionDrawerSelected === 4 && "text-[#2ed3ae]"
-              } transition-all duration-300`}
-            >
-              All 4
-            </button>
+          <div className="flex flex-wrap items-center justify-center w-full gap-6">
+            {/* className="flex flex-wrap gap-6 border-b border-[#ececee] w-full items-center justify-center" */}
+            {arrayServices.map((service, index) => (
+              <button
+                key={index}
+                onClick={() => onClickOptionDrawer(service.id)}
+                className={`${
+                  optionDrawerSelected === service.id && "text-[#2ed3ae]"
+                } transition-all duration-300
+                border-r border-[#d8d8d8] pr-6 last:border-r-0
+                `}
+              >
+                {service.name}
+              </button>
+            ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-8 overflow-y-auto">
-            {arrayImages.map(
+          <div className="grid grid-cols-2 gap-4 mt-8 overflow-y-auto">
+            {arrayImagesServices.map(
               (image, index) =>
                 optionDrawerSelected === image.section && (
                   <div
                     key={index}
-                    className="flex flex-col items-center justify-center gap-8 animate__animated animate__zoomIn animate__faster"
+                    className="flex flex-col items-center justify-center gap-4 animate__animated animate__zoomIn animate__faster"
                   >
                     <div className="transition-all duration-300 shadow-md hover:shadow-2xl">
                       <img
                         src={image.src}
-                        width={500}
-                        height={500}
                         alt={image.name}
+                        className="min-w-[150px] max-w-[150px] min-h-[150px] max-h-[150px]"
                       />
                     </div>
                     <span className="text-base">{image.name}</span>
@@ -167,6 +196,35 @@ export default function Home() {
           </div>
         </div>
       </Drawer>
+
+      {/* Buttons socials */}
+      <div
+        className={`fixed z-40 flex flex-col items-end justify-end gap-8 p-2 overflow-hidden rounded-lg shadow-lg bottom-10 left-4 transition-height duration-300 bg-white ${
+          showAllSocials ? "h-[19rem]" : "h-16"
+        }`}
+      >
+        <button
+          className="text-[#0860e9] "
+          // onClick={() => setIsOpen(true)}
+        >
+          <BsFacebook className="sm:!text-[45px] text-[45px] transition-all duration-300 hover:scale-110 hover:shadow-['#0860e9'] hover:shadow-lg" />
+        </button>
+        <button className="text-[#48c856]">
+          <BsWhatsapp className="sm:!text-[45px] text-[45px] transition-all duration-300 hover:scale-110 hover:drop-shadow-[#48c856] hover:text-[#48c856]" />
+        </button>
+        <button
+          className="text-[#fa01c9] "
+          // onClick={() => setIsOpen(true)}
+        >
+          <BsInstagram className="sm:!text-[45px] text-[45px] transition-all duration-300 hover:scale-110 hover:shadow-['#fa01c9'] hover:shadow-lg" />
+        </button>
+        <button
+          className="text-[#0860e9] "
+          onClick={() => setShowAllSocials(!showAllSocials)}
+        >
+          <MdContactSupport className="sm:!text-[45px] text-[45px] transition-all duration-300 hover:scale-110 hover:shadow-['#0860e9'] hover:shadow-lg" />
+        </button>
+      </div>
     </>
   );
 }
